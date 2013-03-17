@@ -1,3 +1,5 @@
 name: BlockHopper
 main: lekro.bukkitplugins.blockhopper.BlockHopper
-version: 0.0.1
+version: 0.0.2
+commands:
+permissions:
