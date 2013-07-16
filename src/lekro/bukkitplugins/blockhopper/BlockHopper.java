@@ -2,9 +2,12 @@ package lekro.bukkitplugins.blockhopper;
 
 import org.bukkit.Material;
 import org.bukkit.block.BlockFace;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockPlaceEvent;
+import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class BlockHopper extends JavaPlugin implements Listener {
@@ -39,4 +42,17 @@ public class BlockHopper extends JavaPlugin implements Listener {
 			}
 		}
 	}
+	
+	@EventHandler
+	public void clickHopperMinecart(PlayerInteractEvent event) {
+		if (event.getItem().getType().equals(Material.HOPPER_MINECART)) {
+			event.setCancelled(true);
+			event.getItem().setAmount(0);
+			Player player = event.getPlayer();
+			player.getInventory().addItem(new ItemStack(Material.IRON_INGOT, 10), new ItemStack(Material.CHEST, 1));
+			player.sendMessage("§a[§2BlockHopper§a]§r You tried to use a HopperMinecart. I stopped you!");
+		}
+	}
+	
+	
 }
