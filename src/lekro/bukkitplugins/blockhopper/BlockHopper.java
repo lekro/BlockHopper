@@ -49,6 +49,8 @@ public class BlockHopper extends JavaPlugin implements Listener {
 			event.setCancelled(true);
 			event.getItem().setAmount(0);
 			Player player = event.getPlayer();
+			
+			//Return materials, as the HopperMinecart would be completely useless otherwise.
 			player.getInventory().addItem(new ItemStack(Material.IRON_INGOT, 10), new ItemStack(Material.CHEST, 1));
 			player.sendMessage("§a[§2BlockHopper§a]§r You tried to use a HopperMinecart. I stopped you!");
 		}
